@@ -1,4 +1,6 @@
-#IOTA DID EXPLORER
+# IOTA DID EXPLORER
+
+Try it out here https://thoralf-m.github.io/iota-did-resolver/
 
 Using the Wasm bindings from <https://github.com/iotaledger/identity.rs>
 
