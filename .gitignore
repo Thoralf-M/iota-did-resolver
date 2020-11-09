@@ -1,5 +1,4 @@
 /node_modules/
 /public/build/
-/public/
 .DS_Store
 /public/iota_identity_wasm_bg.wasm
