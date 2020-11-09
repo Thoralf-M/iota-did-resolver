@@ -109,7 +109,7 @@
     {/if}
     {#if visible}
       <div>
-        <input type="text" bind:value={node} placeholder="Node" />
+        <input type="text" bind:value={node} placeholder="NodeURL" />
       </div>
       <div>
         <label>
