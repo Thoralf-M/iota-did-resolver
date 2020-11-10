@@ -1,6 +1,5 @@
 <script>
-  import identity_lib from "iota-identity-wasm-test/web";
-
+  import loadWasm, * as lib from "iota-identity-wasm-test/web/";
   let node;
   let nodes = [
     // Mainnet
@@ -12,7 +11,7 @@
     // Comnet
     { network: "com", url: "https://nodes.comnet.thetangle.org:443" },
     // Devnet
-    { network: "dev", url: "https://nodes.devnet.iota.org:443" }
+    { network: "dev", url: "https://nodes.devnet.iota.org:443" },
   ];
   let did = "did:iota:3tukwL7jMP5cfxtUB8je7wAUkaPSAgBMeGnY6YBivpHf";
   let network = "";
@@ -26,7 +25,7 @@
   }
 
   async function resolve_did() {
-    let lib = await identity_lib();
+    await loadWasm();
     //parse did to get the network
     let parsed_did = lib.DID.parse(did);
     console.log(parsed_did);
@@ -46,7 +45,9 @@
           "https://explorer.iota.org/devnet/address/" + parsed_did.address;
         network = "Devnet";
     }
-    let networkNodes = nodes.filter(node => node.network == parsed_did.network);
+    let networkNodes = nodes.filter(
+      (node) => node.network == parsed_did.network
+    );
     let doc = "";
     for (let t = 0; t < 10; t++) {
       if (doc != "" && typeof doc != "undefined") {
@@ -54,13 +55,14 @@
       }
       doc = await lib
         .resolve(did, {
-          nodes: networkNodes.map(node => node.url),
-          network: parsed_did.network
+          nodes: networkNodes.map((node) => node.url),
+          network: parsed_did.network,
         })
-        .catch(e => console.log(e));
+        .catch((e) => console.log(e));
     }
     return "No document found. Maybe the transaction was deleted on this node?";
   }
+
   function handleClick() {
     resolveDID = resolve_did();
   }
@@ -104,13 +106,9 @@
 <main>
   <h1>IOTA DID RESOLVER</h1>
   <div>
-    {#if !visible}
-      <button on:click={visibility}>Add node</button>
-    {/if}
+    {#if !visible}<button on:click={visibility}>Add node</button>{/if}
     {#if visible}
-      <div>
-        <input type="text" bind:value={node} placeholder="NodeURL" />
-      </div>
+      <div><input type="text" bind:value={node} placeholder="NodeURL" /></div>
       <div>
         <label>
           <input type="radio" bind:group={networkoption} value={'main'} />
