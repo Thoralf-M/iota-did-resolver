@@ -14,7 +14,7 @@
     // Devnet
     { network: "dev", url: "https://nodes.devnet.iota.org:443" }
   ];
-  let did = "did:iota:9mmRdfVhsQQdNbMWXVABzHg2nEZgW8FqbovqGzBcFLr4";
+  let did = "did:iota:3tukwL7jMP5cfxtUB8je7wAUkaPSAgBMeGnY6YBivpHf";
   let network = "";
   let networkoption = "main";
   let resolveDID = "";
