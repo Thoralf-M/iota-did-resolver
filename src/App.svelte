@@ -1,5 +1,5 @@
 <script>
-  import loadWasm, * as lib from "iota-identity-wasm-test/web/";
+  import * as lib from "iota-identity-wasm-test/web/";
   let node;
   let nodes = [
     // Mainnet
@@ -25,7 +25,7 @@
   }
 
   async function resolve_did() {
-    await loadWasm();
+    await lib.init();
     //parse did to get the network
     let parsed_did = lib.DID.parse(did);
     console.log(parsed_did);
